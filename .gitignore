@@ -1,0 +1,60 @@
+# --- SISTEMA E EDITORES ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- SEGURANÇA GERAL (CRÍTICO) ---
+# Bloqueia arquivos de variáveis de ambiente (senhas costumam morar aqui)
+.env
+.env.*
+!.env.example
+
+# Chaves SSH e Certificados
+*.pem
+*.key
+*.pub
+id_rsa
+id_ed25519
+known_hosts
+authorized_keys
+*.crt
+*.csr
+*.pfx
+*.p12
+
+# Arquivos de variaveis
+*.tfvars
+*.tfvars.json
+
+# Imagens de disco e ISOs
+*.iso
+*.img
+*.qcow2
+*.vmdk
+
+# Backups de Cabecalho LUKS
+header-*.img
+luks-header-*
+*.luks
+
+# --- BACKUPS GERAIS ---
+*.bak
+*.backup
+*.tar.gz
+*.zip
+*.sql
+*.dump
+
+# --- LOGS ---
+*.log
+/logs/
+
+# --- CERTIFICADOS E CHAVES PRIVADAS ---
+acme.json
+traefik-backup.tar.gz
+*.bkp
+
