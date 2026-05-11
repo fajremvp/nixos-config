@@ -9,9 +9,10 @@
 // Este arquivo utiliza a linguagem de marcação KDL.
 // Toda configuração está dividida por nós e blocos.
 
+prefer-no-csd
+
 // --- STARTUP / EXEC-ONCE ---
 // O Niri recomenda que ferramentas essenciais como barras e daemons sejam iniciadas na sua sessão (Wayland).
-spawn-at-startup "awww-daemon"
 spawn-at-startup "hypridle"
 spawn-at-startup "kitty" "-e" "btop"
 
@@ -81,17 +82,12 @@ layout {
     }
 
     border {
-        off // Manter a borda real desligada e use apenas o focus-ring para um visual mais limpo.
+        off
     }
 
     // Sombras (Shadows)
     shadow {
-        on
-        softness 30
-        spread 2
-        offset x=0 y=2
-        draw-behind-window true // Corrige artefatos em cantos arredondados
-        color "#1a1a1aee"
+        off
     }
 
     background-color "transparent"
@@ -108,25 +104,27 @@ window-rule {
 // O modificador no Niri é chamado de "Mod" (Super/Windows key).
 binds {
     // Utilitários de Janela e Aplicações
-    Mod+Q { spawn "kitty"; }
+    Mod+Q repeat=false { spawn "kitty"; }
     Mod+E { spawn "kitty" "-e" "yazi"; }
     Mod+C { close-window; }
     Mod+Shift+M { quit; }
     // Abre a Visão Geral (Overview)
-    Mod+Escape { toggle-overview; }
-    Mod+1 cooldown-ms=20 { focus-column-left; }
-    Mod+2 cooldown-ms=20 { focus-column-right; }
+    Mod+Escape repeat=false { toggle-overview; }
 
     // Script Executions com múltiplos parâmetros ou via bash
-    Mod+B { spawn-sh "kitty -e btop"; }
-    Mod+F { spawn-sh "kitty --hold -e fastfetch"; }
-    Mod+L { spawn "hyprlock"; }
+    Mod+B repeat=false { spawn-sh "kitty -e btop"; }
+    Mod+L repeat=false { spawn "hyprlock"; }
+
     Mod+K { screenshot; } // Abre a UI interativa (seleção de área)
     Mod+Shift+K { screenshot-screen; } // Tira print da tela toda
     Mod+Ctrl+K { screenshot-window; } // Tira print apenas da janela em foco
 
     // Ajustes de Janela
-    Mod+V { maximize-column; } // No Niri, "fullscreen-window" é a ação para tela cheia.
+    Mod+V repeat=false { maximize-column; }
+    Mod+F repeat=false { maximize-window-to-edges; }
+    Mod+Shift+F repeat=false { fullscreen-window; }
+
+    Mod+P repeat=false { toggle-window-floating; }
 
     // Movimentação (Focus)
     Mod+A  { focus-column-left; }
@@ -149,19 +147,8 @@ binds {
     // --- Scripts e Comandos de Terminal Avançados ---
     Shift+F3 { spawn-sh "~/.local/bin/luz_noturna.sh down"; }
     Shift+F4 { spawn-sh "~/.local/bin/luz_noturna.sh up"; }
-    Mod+X { spawn-sh "~/.local/bin/bateria.sh"; }
     // HyprRun
-    Mod+R { spawn "kitty" "-e" "/home/fajre/.local/bin/hyprrun.sh"; }
-    Mod+N { spawn-sh "hyprpicker -f hex | wl-copy"; }
-}
-
-// Emulação do "suppressevent maximize" (Hyprland)
-// Evita que janelas tomem conta da tela indevidamente
-window-rule {
-    match is-window-cast-target=false // Exemplo de condição ampla
-    // O Niri gerencia colunas, então limites de tamanho são geridos de forma diferente, 
-    // mas da para forçar um tamanho máximo para janelas específicas se necessário:
-    // max-height 1080
+    Mod+R repeat=false { spawn "kitty" "-e" "/home/fajre/.local/bin/hyprrun.sh"; }
 }
 
 gestures {
@@ -178,6 +165,24 @@ overview {
 layer-rule {
     match layer="background"
     place-within-backdrop true
+}
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+blur {
+    passes 3
+    offset 3.0
+    noise 0.02
+    saturation 1.0
+}
+
+window-rule {
+    match app-id="^kitty$"
+    background-effect {
+        blur true
+    }
 }
 '';
 }
