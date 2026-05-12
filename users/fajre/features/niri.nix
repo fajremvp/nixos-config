@@ -164,11 +164,6 @@ gestures {
     }
 }
 
-// Desativa a interface do alternador de janelas
-recent-windows {
-    off
-}
-
 overview {
     zoom 0.4
 }
