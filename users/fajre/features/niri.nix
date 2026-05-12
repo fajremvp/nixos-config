@@ -151,9 +151,10 @@ binds {
     // HyprRun
     Mod+R repeat=false { spawn "kitty" "-e" "/home/fajre/.local/bin/hyprrun.sh"; }
 
-    Mod+Tab { off; }
-    Alt+Tab { off; }
-    Mod+Shift+Tab { off; }
+    Mod+Tab {}
+    Alt+Tab {}
+    Mod+Shift+Tab {}
+    Alt+Shift+Tab {}
 }
 
 gestures {
