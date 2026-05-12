@@ -49,6 +49,31 @@
     };
   };
 
+ # --- Configuração do Terminal (Bash) ---
+  programs.bash = {
+    enable = true;
+    enableCompletion = true;
+
+    # Seus Aliases
+    shellAliases = {
+      ls = "ls --color=auto";
+      grep = "grep --color=auto";
+    };
+
+    initExtra = ''
+      # Custom Prompt (PS1)
+      PS1='\[\e[38;5;250m\]┌─(\[\e[1;37m\]\u\[\e[1;36m\]@\[\e[1;36m\]nix\[\e[0m\])-[\[\e[1;34m\]\w\[\e[0m\]]\n\[\e[38;5;250m\]└─\$ '
+
+      # Adiciona os seus scripts personalizados ao PATH
+      export PATH="$HOME/.local/bin:$PATH"
+
+      # Inicialização do NVM
+      export NVM_DIR="$HOME/.nvm"
+      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+      [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    '';
+  };
+
   # --- Git ---
   programs.git = {
     enable = true;
