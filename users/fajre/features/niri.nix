@@ -150,6 +150,10 @@ binds {
     Shift+F4 { spawn-sh "~/.local/bin/luz_noturna.sh up"; }
     // HyprRun
     Mod+R repeat=false { spawn "kitty" "-e" "/home/fajre/.local/bin/hyprrun.sh"; }
+
+    Mod+Tab { off; }
+    Alt+Tab { off; }
+    Mod+Shift+Tab { off; }
 }
 
 gestures {
@@ -157,6 +161,11 @@ gestures {
     hot-corners {
         off
     }
+}
+
+// Desativa a interface do alternador de janelas
+recent-windows {
+    off
 }
 
 overview {
