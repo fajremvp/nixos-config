@@ -4,7 +4,7 @@
   # Importa as "Features" (Módulos opt-in)
   imports = [
     ./features/niri.nix
-    # ./features/kitty.nix
+    ./features/kitty.nix
   ];
 
   home.username = "fajre";
@@ -18,7 +18,7 @@
     veracrypt
     qbittorrent
     git pre-commit gitleaks nmap
-    kitty vim neovim btop fastfetch tree fzf
+    vim neovim btop fastfetch tree fzf
     awww hyprlock
     _7zz unzip zip
     jdk21 maven netbeans
