@@ -2,7 +2,7 @@
 
 {
   imports = [
-    # ./hardware.nix # <- Gerado automaticamente na instalação do NixOS.
+    ./hardware.nix # <- Gerado automaticamente na instalação do NixOS.
   ];
 
   # BOOTLOADER (UEFI)
