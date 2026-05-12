@@ -78,13 +78,13 @@
   # --- Git ---
   programs.git = {
     enable = true;
-    userName = "Fajre";
-    userEmail = "105254444+fajremvp@users.noreply.github.com";
     signing = {
       key = "AF15F5ED0960E69E";
       signByDefault = true;
     };
-    extraConfig = {
+    settings = {
+      user.name = "Fajre";
+      user.email = "105254444+fajremvp@users.noreply.github.com";
       init.defaultBranch = "main";
     };
   };
@@ -94,7 +94,7 @@
   services.gpg-agent = {
     enable = true;
     defaultCacheTtl = 7200;
-    pinentryPackage = pkgs.pinentry-gnome3;
+    pinentry.package = pkgs.pinentry-gnome3;
   };
 
   # --- Configuração do Cursor ---
