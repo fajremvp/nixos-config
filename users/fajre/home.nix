@@ -21,7 +21,7 @@
     vim neovim btop fastfetch tree fzf
     awww hyprlock
     _7zz unzip zip
-    jdk21 maven netbeans
+    jdk21 maven netbeans xwayland-satellite
   ];
 
   # Permite que o Home Manager instale e gerencie a si mesmo
@@ -58,6 +58,9 @@
     shellAliases = {
       ls = "ls --color=auto";
       grep = "grep --color=auto";
+
+    # Fix para aplicativos Java Swing em Tiling Window Managers
+    export _JAVA_AWT_WM_NONREPARENTING=1
     };
 
     initExtra = ''
