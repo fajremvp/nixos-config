@@ -61,10 +61,9 @@
     };
 
     initExtra = ''
-      # Custom Prompt (PS1)
-      PS1='\[\e[38;5;250m\]┌─(\[\e[1;37m\]\u\[\e[1;36m\]@\[\e[1;36m\]nix\[\e[0m\])-[\[\e[1;34m\]\w\[\e[0m\]]\n\[\e[38;5;250m\]└─\$ '
+      # Custom Prompt Dinâmico (PS1)
+      PS1='\[\e[38;5;250m\]┌─(\[\e[1;37m\]\u\[\e[1;36m\]@\[\e[1;36m\]\h\[\e[0m\])-[\[\e[1;34m\]\w\[\e[0m\]]\n\[\e[38;5;250m\]└─\$ '
 
-      # Adiciona os seus scripts personalizados ao PATH
       export PATH="$HOME/.local/bin:$PATH"
 
       # Inicialização do NVM
