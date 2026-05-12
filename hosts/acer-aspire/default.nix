@@ -63,7 +63,7 @@
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     noto-fonts
-    noto-fonts-emoji
+    noto-fonts-color-emoji
   ];
 
   # Camada de compatibilidade X11 (Crítico para OBS, Java e Electron)
