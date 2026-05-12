@@ -58,9 +58,6 @@
     shellAliases = {
       ls = "ls --color=auto";
       grep = "grep --color=auto";
-
-    # Fix para aplicativos Java Swing em Tiling Window Managers
-    export _JAVA_AWT_WM_NONREPARENTING=1
     };
 
     initExtra = ''
@@ -72,6 +69,9 @@
       export NVM_DIR="$HOME/.nvm"
       [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
       [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+      # Fix para aplicativos Java Swing em Tiling Window Managers
+      export _JAVA_AWT_WM_NONREPARENTING=1
     '';
   };
 
