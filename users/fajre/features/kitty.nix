@@ -10,7 +10,6 @@
     };
 
     settings = {
-      shell = "/bin/bash";
       background_opacity = "0.8";
       cursor_trail = "1";
       cursor_shape = "block";
