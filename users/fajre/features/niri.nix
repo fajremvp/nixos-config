@@ -150,17 +150,19 @@ binds {
     Shift+F4 { spawn-sh "~/.local/bin/luz_noturna.sh up"; }
     // HyprRun
     Mod+R repeat=false { spawn "kitty" "-e" "/home/fajre/.local/bin/hyprrun.sh"; }
-
-    Mod+Tab {}
-    Alt+Tab {}
-    Mod+Shift+Tab {}
-    Alt+Shift+Tab {}
 }
 
 gestures {
     // Desativa completamente o acionamento de funções ao encostar o mouse nos cantos da tela
     hot-corners {
         off
+    }
+}
+
+// Desativa o alternador de janelas e remove os atalhos nativos dele
+recent-windows {
+    off
+    binds {
     }
 }
 
