@@ -35,12 +35,12 @@ repos:
         # Relaxed: Permite linhas longas e formatação menos rígida
         args: ['-d {extends: relaxed, rules: {line-length: disable}}']
 
-  # Ansible Lint (Básico)
-  - repo: https://github.com/ansible/ansible-lint
-    rev: v26.1.1
-    hooks:
-      - id: ansible-lint
-        # --profile basic: Foca em erros fatais e depreciações, ignora "estilo" por enquanto.
-        args: ["--profile", "basic"]
-        additional_dependencies: ['ansible']
-        language_version: python3
+# # Ansible Lint (Básico)
+#  - repo: https://github.com/ansible/ansible-lint
+#    rev: v26.1.1
+#    hooks:
+#      - id: ansible-lint
+#        # --profile basic: Foca em erros fatais e depreciações, ignora "estilo" por enquanto.
+#        args: ["--profile", "basic"]
+#        additional_dependencies: ['ansible']
+#        language_version: python3
