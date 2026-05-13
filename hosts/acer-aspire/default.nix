@@ -64,6 +64,7 @@
     nerd-fonts.jetbrains-mono
     noto-fonts
     noto-fonts-color-emoji
+    minecraftia
   ];
 
   # Camada de compatibilidade X11 (Crítico para OBS, Java e Electron)

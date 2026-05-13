@@ -5,6 +5,7 @@
   imports = [
     ./features/niri.nix
     ./features/kitty.nix
+    ./features/hyprlock.nix
   ];
 
   home.username = "fajre";
@@ -19,7 +20,7 @@
     proton-vpn qbittorrent
     git pre-commit gitleaks nmap
     vim neovim btop fastfetch tree fzf
-    awww hyprlock
+    awww
     _7zz unzip zip
     jdk21 maven netbeans xwayland-satellite
   ];
