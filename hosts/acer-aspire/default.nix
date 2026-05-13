@@ -39,6 +39,8 @@
   programs.niri.enable = true;
   # Essencial para gerenciadores de janelas rodarem bem sem um Desktop Environment
   security.polkit.enable = true;
+  # Permite que o Hyprlock valide a sua senha (PAM)
+  security.pam.services.hyprlock = {};
 
   # --- Áudio (PipeWire) ---
   security.rtkit.enable = true;
