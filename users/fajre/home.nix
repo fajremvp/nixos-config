@@ -6,6 +6,7 @@
     ./features/niri.nix
     ./features/kitty.nix
     ./features/hyprlock.nix
+    ./features/hypridle.nix
   ];
 
   home.username = "fajre";
@@ -32,8 +33,6 @@
   services.syncthing = {
     enable = true;
   };
-
-  services.hypridle.enable = true;
 
   systemd.user.services.awww = {
     Unit = {
