@@ -74,6 +74,9 @@
   # Habilita o daemon do Tailscale
   services.tailscale.enable = true;
 
+  # Serviços de Segurança do GNOME (Necessário para o Proton VPN salvar senhas)
+  services.gnome.gnome-keyring.enable = true;
+
   services.openssh = {
     enable = true;
     settings.PasswordAuthentication = false; # Foco em segurança (apenas chaves)

@@ -16,7 +16,7 @@
     firefox chromium tor-browser
     obs-studio drawio zathura
     veracrypt
-    qbittorrent
+    protonvpn-gui qbittorrent
     git pre-commit gitleaks nmap
     vim neovim btop fastfetch tree fzf
     awww hyprlock
