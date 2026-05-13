@@ -36,6 +36,8 @@ output "HDMI-A-1" {
 
 // --- INPUTS / TECLADO & MOUSE ---
 input {
+    focus-follows-mouse max-scroll-amount="0%"
+
     keyboard {
         xkb {
             // No Hyprland: kb_layout = br,us / kb_variant = abnt2, / kb_options = grp:win_space_toggle
