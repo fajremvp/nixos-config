@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  home.packages = [ pkgs.hyprlock ];
+
   # Injeta a configuração diretamente no caminho esperado pelo hyprlock
   home.file.".config/hyprlock/hyprlock.conf".text = ''
     $font = Minecraft
