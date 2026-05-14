@@ -5,6 +5,10 @@
     enable = true;
     defaultEditor = true;
 
+    # Silencia os warnings e adota a prática moderna do Nix
+    withRuby = false;
+    withPython3 = false;
+
     # O Nix garante que o Neovim sempre terá essas ferramentas disponíveis no PATH dele, isolando do resto do sistema.
     extraPackages = with pkgs; [
       # Essenciais para o Telescope

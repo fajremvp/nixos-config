@@ -62,6 +62,19 @@
     config.common.default = "*";
   };
 
+  # --- GERENCIADOR DE ARQUIVOS (Thunar) ---
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs; [
+      thunar-archive-plugin
+      thunar-volman
+    ];
+  };
+  # GVFS garante que a Lixeira, montagem de pendrives e discos de rede funcionem
+  services.gvfs.enable = true;
+  # Tumbler gera as miniaturas (thumbnails) das imagens
+  services.tumbler.enable = true;
+
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     noto-fonts

@@ -108,5 +108,14 @@
     x11.enable = true;
   };
 
+  # --- APLICATIVOS PADRÃO (MIME Types) ---
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      # Diz ao sistema que diretórios/pastas abrem com o Thunar
+      "inode/directory" = [ "thunar.desktop" ];
+    };
+  };
+
   home.stateVersion = "25.11";
 }

@@ -105,7 +105,7 @@ window-rule {
 binds {
     // Utilitários de Janela e Aplicações
     Mod+Q repeat=false { spawn "kitty"; }
-    Mod+E { spawn "kitty" "-e" "yazi"; }
+    Mod+E { spawn "thunar"; }
     Mod+C { close-window; }
     Mod+Shift+M { quit; }
     // Abre a Visão Geral (Overview)
