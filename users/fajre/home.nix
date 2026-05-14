@@ -25,6 +25,7 @@
     awww
     _7zz unzip zip
     jdk21 maven netbeans xwayland-satellite
+    libreoffice hunspellDicts.pt-br
   ];
 
   # Permite que o Home Manager instale e gerencie a si mesmo
