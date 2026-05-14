@@ -5,7 +5,6 @@
 
   # Injeta a configuração diretamente no caminho esperado pelo hyprlock
   home.file.".config/hypr/hyprlock.conf".text = ''
-    $font = Minecraft
 
     general {
         hide_cursor = true
@@ -35,7 +34,7 @@
         font_color = rgba(220, 220, 220, 0.7)
         fade_on_empty = false
         rounding = 15
-        font_family = $font
+        font_family = JetBrains Nerf Font
         placeholder_text =
         fail_text = Loser!
         dots_spacing = 0.3
@@ -48,7 +47,7 @@
     label {
         text = cmd[update:1000] date +"%H:%M:%S" # atualiza a cada segundo
         font_size = 90
-        font_family = Minecraft
+        font_family = Minecraftia
         position = 0, 70
         halign = center
         valign = center
@@ -58,7 +57,7 @@
     label {
         text = cmd[update:60000] date +"%A, %B %d"
         font_size = 28
-        font_family = Minecraft
+        font_family = Minecraftia
         position = 0, -10
         halign = center
         valign = center
@@ -70,7 +69,7 @@
         text = I use <span foreground="cyan">Nix</span>, btw
 
         font_size = 50
-        font_family = $font
+        font_family = JetBrains Nerf Font
         color = rgba(200, 200, 200, 1.0)
         position = 0, -80
         halign = center
