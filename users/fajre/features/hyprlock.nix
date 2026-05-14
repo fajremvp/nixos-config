@@ -38,7 +38,7 @@
         placeholder_text =
         fail_text = Loser!
         dots_spacing = 0.3
-        position = 0, -160
+        position = 0, -175
         halign = center
         valign = center
     }
@@ -58,7 +58,7 @@
         text = cmd[update:60000] date +"%A, %B %d"
         font_size = 28
         font_family = Minecraftia
-        position = 0, -10
+        position = 0, -30
         halign = center
         valign = center
     }
@@ -71,7 +71,7 @@
         font_size = 50
         font_family = JetBrains Nerf Font
         color = rgba(200, 200, 200, 1.0)
-        position = 0, -80
+        position = 0, -110
         halign = center
         valign = center
     }
