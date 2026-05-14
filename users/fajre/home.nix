@@ -7,6 +7,7 @@
     ./features/kitty.nix
     ./features/hyprlock.nix
     ./features/hypridle.nix
+    ./features/nvim.nix
   ];
 
   home.username = "fajre";
@@ -20,7 +21,7 @@
     veracrypt
     proton-vpn qbittorrent
     git pre-commit gitleaks nmap
-    vim neovim btop fastfetch tree fzf
+    vim btop fastfetch tree fzf
     awww
     _7zz unzip zip
     jdk21 maven netbeans xwayland-satellite

@@ -66,7 +66,7 @@
     # TEXTO MEME “I use Nix, btw”
     label {
         # <span> para isolar a cor apenas na palavra "Nix"
-        text = I use <span foreground="cyan">Nix</span>, btw
+        text = "I use <span foreground="cyan">Nix</span>, btw"
 
         font_size = 50
         font_family = JetBrains Nerf Font
