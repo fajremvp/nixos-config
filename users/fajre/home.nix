@@ -19,7 +19,7 @@
   # O Nix vai baixar e colocar no $PATH automaticamente
   home.packages = with pkgs; [
     firefox chromium tor-browser
-    obs-studio pavucontrol
+    obs-studio kdePackages.kdenlive pavucontrol
     drawio zathura qimgv
     veracrypt
     proton-vpn qbittorrent
@@ -29,6 +29,7 @@
     _7zz unzip zip
     jdk21 maven netbeans xwayland-satellite
     libreoffice hunspellDicts.pt-br
+    prismlauncher
   ];
 
   # Permite que o Home Manager instale e gerencie a si mesmo

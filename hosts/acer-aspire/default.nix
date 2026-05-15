@@ -52,6 +52,11 @@
     pulse.enable = true;
   };
 
+  # --- BLUETOOTH ---
+  hardware.bluetooth.enable = true; # Liga o suporte ao hardware
+  hardware.bluetooth.powerOnBoot = false; # Eu ligo manualmente
+  services.blueman.enable = true; # Habilita o daemon e as permissões do Blueman
+
   # --- Docker ---
   virtualisation.docker.enable = true;
 

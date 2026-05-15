@@ -8,7 +8,7 @@
     [general]
     framerate = 60
     autosens = 0
-    sensitivity = 120
+    sensitivity = 80
     bars = 0
     bar_width = 2
     bar_spacing = 1
