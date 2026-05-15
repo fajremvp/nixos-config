@@ -9,6 +9,7 @@
     ./features/hypridle.nix
     ./features/nvim.nix
     ./features/mpv.nix
+    ./features/cava.nix
   ];
 
   home.username = "fajre";
