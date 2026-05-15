@@ -8,6 +8,7 @@
     ./features/hyprlock.nix
     ./features/hypridle.nix
     ./features/nvim.nix
+    ./features/mpv.nix
   ];
 
   home.username = "fajre";
@@ -17,7 +18,8 @@
   # O Nix vai baixar e colocar no $PATH automaticamente
   home.packages = with pkgs; [
     firefox chromium tor-browser
-    obs-studio drawio zathura
+    obs-studio pavucontrol
+    drawio zathura qimgv
     veracrypt
     proton-vpn qbittorrent
     git pre-commit gitleaks nmap
@@ -112,8 +114,41 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      # Diz ao sistema que diretórios/pastas abrem com o Thunar
+      # Pastas
       "inode/directory" = [ "thunar.desktop" ];
+
+      # PDFs
+      "application/pdf" = [ "org.pwmt.zathura.desktop" ];
+
+      # Imagens (Tem que ser explícito, o Home Manager não suporta *)
+      "image/jpeg" = [ "qimgv.desktop" ];
+      "image/png"  = [ "qimgv.desktop" ];
+      "image/gif"  = [ "qimgv.desktop" ];
+      "image/webp" = [ "qimgv.desktop" ];
+      "image/bmp"  = [ "qimgv.desktop" ];
+      "image/svg+xml" = [ "qimgv.desktop" ];
+
+      # Textos, Códigos e Markdown
+      "text/plain" = [ "nvim-kitty.desktop" ];
+      "text/markdown" = [ "nvim-kitty.desktop" ];
+      "application/json" = [ "nvim-kitty.desktop" ];
+      "text/html" = [ "nvim-kitty.desktop" ];
+      "text/x-c" = [ "nvim-kitty.desktop" ];
+      "text/x-java" = [ "nvim-kitty.desktop" ];
+      "text/x-python" = [ "nvim-kitty.desktop" ];
+      "application/x-shellscript" = [ "nvim-kitty.desktop" ];
+    };
+  };
+
+  # --- ATALHOS CUSTOMIZADOS (Workarounds) ---
+  xdg.desktopEntries = {
+    # Truque para o Thunar conseguir abrir arquivos de texto no Neovim dentro do Kitty
+    nvim-kitty = {
+      name = "Neovim (Kitty)";
+      exec = "kitty -e nvim %F";
+      icon = "nvim";
+      terminal = false; # false para o Thunar não tentar interceptar
+      categories = [ "Utility" "TextEditor" ];
     };
   };
 
