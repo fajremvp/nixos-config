@@ -14,8 +14,6 @@ prefer-no-csd
 // --- STARTUP / EXEC-ONCE ---
 // O Niri recomenda que ferramentas essenciais como barras e daemons sejam iniciadas na sua sessão (Wayland).
 spawn-at-startup "hypridle"
-spawn-at-startup "kitty" "-e" "btop"
-spawn-at-startup "kitty" "-e" "cava"
 spawn-at-startup "xwayland-satellite"
 
 // Execução de script bash customizado
