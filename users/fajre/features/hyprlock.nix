@@ -34,7 +34,7 @@
         font_color = rgba(220, 220, 220, 0.7)
         fade_on_empty = false
         rounding = 15
-        font_family = JetBrains Nerf Font
+        font_family = JetBrains Nerd Font
         placeholder_text =
         fail_text = Loser!
         dots_spacing = 0.3

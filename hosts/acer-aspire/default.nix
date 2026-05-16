@@ -9,6 +9,10 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Habilita o zRAM como swap comprimido na memória.
+  # O NixOS automaticamente calcula uma porcentagem segura da sua RAM (geralmente 50%, ou seja, ~8GB virtuais).
+  zramSwap.enable = true;
+
   # Identidade da Máquina na Rede
   networking.hostName = "acer-aspire";
   networking.networkmanager.enable = true;
