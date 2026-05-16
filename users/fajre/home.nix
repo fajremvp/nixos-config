@@ -11,6 +11,7 @@
     ./features/mpv.nix
     ./features/cava.nix
     ./features/luz-noturna.nix
+    ./features/hyprrun.nix
   ];
 
   home.username = "fajre";
