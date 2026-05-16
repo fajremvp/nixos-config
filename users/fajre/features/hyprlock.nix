@@ -69,7 +69,7 @@
         text = "I use <span foreground="cyan">Nix</span>, btw"
 
         font_size = 50
-        font_family = JetBrains Nerf Font
+        font_family = JetBrains Nerd Font
         color = rgba(200, 200, 200, 1.0)
         position = 0, -110
         halign = center
