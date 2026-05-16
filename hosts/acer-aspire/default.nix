@@ -63,6 +63,9 @@
 
   # --- Docker ---
   virtualisation.docker.enable = true;
+  # Força o systemd a NÃO iniciar o docker ou seu socket automaticamente no boot
+  systemd.services.docker.wantedBy = pkgs.lib.mkForce [ ];
+  systemd.sockets.docker.wantedBy = pkgs.lib.mkForce [ ];
 
   # --- XDG Portals (Para o OBS e File Picker funcionarem no Wayland) ---
   xdg.portal = {
