@@ -110,6 +110,16 @@
     settings.PasswordAuthentication = false; # Foco em segurança (apenas chaves)
   };
 
+  # Garante que as regras de hardware para o brilho sejam instaladas
+  environment.systemPackages = [ pkgs.brightnessctl ];
+
+  # --- COMPORTAMENTO DE BOTÕES FÍSICOS (Logind) ---
+  services.logind.settings.Login = {
+    HandlePowerKey = "ignore";
+    HandlePowerKeyLongPress = "ignore";
+    HandleSuspendKey = "ignore";
+  };
+
   networking = {
     nftables.enable = true;
     firewall = {
@@ -126,7 +136,7 @@
   users.users.fajre = {
     initialPassword = "123";
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" "docker" ]; # wheel = sudo
+    extraGroups = [ "networkmanager" "wheel" "docker" "video" ]; # wheel = sudo
   };
 
   # Versão do Estado do Sistema

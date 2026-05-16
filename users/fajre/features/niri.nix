@@ -15,6 +15,7 @@ prefer-no-csd
 // O Niri recomenda que ferramentas essenciais como barras e daemons sejam iniciadas na sua sessão (Wayland).
 spawn-at-startup "hypridle"
 spawn-at-startup "kitty" "-e" "btop"
+spawn-at-startup "kitty" "-e" "cava"
 spawn-at-startup "xwayland-satellite"
 
 // Execução de script bash customizado
@@ -37,6 +38,9 @@ output "HDMI-A-1" {
 // --- INPUTS / TECLADO & MOUSE ---
 input {
     focus-follows-mouse max-scroll-amount="0%"
+
+    // Desarma o sequestro nativo do botão Power pelo Niri
+    disable-power-key-handling
 
     keyboard {
         xkb {
@@ -131,18 +135,22 @@ binds {
     Mod+D  { focus-column-right; }
     Mod+W  { focus-workspace-up; }
     Mod+S  { focus-workspace-down; }
+    Mod+Left  { focus-column-left; }
+    Mod+Right { focus-column-right; }
 
     // Atalhos de Mídia (Pipewire/Playerctl)
-    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1.0"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+ -l 1.0"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-"; }
     XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
 
-    XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "-e4" "-n2" "set" "5%+"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "-e4" "-n2" "set" "5%-"; }
+    XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "-e4" "-n2" "set" "10%+"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "-e4" "-n2" "set" "10%-"; }
 
-    XF86AudioPlay allow-when-locked=true { spawn-sh "playerctl play-pause"; }
-    XF86AudioNext allow-when-locked=true { spawn-sh "playerctl next"; }
+    // Consome as teclas indesejadas (Modo Avião e Projetor) para elas não fazerem absolutamente nada
+    XF86WLAN { spawn "true"; }
+    XF86RFKill { spawn "true"; }
+    XF86Display { spawn "true"; }
 
     // --- Scripts e Comandos de Terminal Avançados ---
     Shift+F3 { spawn-sh "~/.local/bin/luz_noturna.sh down"; }
