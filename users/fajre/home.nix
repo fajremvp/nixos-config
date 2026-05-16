@@ -10,6 +10,7 @@
     ./features/nvim.nix
     ./features/mpv.nix
     ./features/cava.nix
+    ./features/luz-noturna.nix
   ];
 
   home.username = "fajre";
