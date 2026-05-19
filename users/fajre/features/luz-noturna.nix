@@ -8,6 +8,8 @@
   home.file.".local/bin/luz_noturna.sh" = {
     executable = true;
     text = ''
+      #!/usr/bin/env bash
+
       STATE="$HOME/.cache/current_temp"
       DEFAULT_TEMP=3000
       STEP=200

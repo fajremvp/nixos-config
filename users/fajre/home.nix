@@ -22,16 +22,17 @@
   home.packages = with pkgs; [
     firefox chromium tor-browser
     obs-studio kdePackages.kdenlive pavucontrol
-    drawio zathura qimgv
-    veracrypt
-    proton-vpn qbittorrent
-    git pre-commit gitleaks nmap
-    vim btop fastfetch tree fzf
-    awww
-    _7zz unzip zip
-    jdk21 maven netbeans xwayland-satellite
     libreoffice hunspellDicts.pt-br
     prismlauncher
+    drawio zathura qimgv
+    veracrypt sparrow feather
+    proton-vpn qbittorrent
+    awww
+    git pre-commit gitleaks nmap
+    vim btop fastfetch tree fzf
+    _7zz unzip zip
+    jdk21 maven netbeans xwayland-satellite
+    nodejs
   ];
 
   # Permite que o Home Manager instale e gerencie a si mesmo

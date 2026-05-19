@@ -4,6 +4,8 @@
   home.file.".local/bin/hyprrun.sh" = {
     executable = true;
     text = ''
+      #!/usr/bin/env bash
+
       apps=(
         "Firefox:firefox"
         "Chromium:chromium"
@@ -16,11 +18,11 @@
         "Pavucontrol:pavucontrol"
         "qBittorrent:qbittorrent"
         "ProtonVPN:protonvpn-app"
-        "Sparrow Wallet:X"
-        "Feather Wallet:X"
+        "Sparrow Wallet:sparrow-desktop"
+        "Feather Wallet:feather"
         "VeraCrypt:veracrypt"
         "draw.io:drawio"
-        "KdenLive:kdenlive"
+        "Kdenlive:kdenlive"
       )
 
       # ''$ no array para o Nix não tentar interpretar como variável Nix
