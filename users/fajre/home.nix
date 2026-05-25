@@ -115,6 +115,13 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
+      # --- NAVEGADOR PADRÃO ---
+      "text/html" = [ "firefox.desktop" ];
+      "x-scheme-handler/http" = [ "firefox.desktop" ];
+      "x-scheme-handler/https" = [ "firefox.desktop" ];
+      "x-scheme-handler/about" = [ "firefox.desktop" ];
+      "x-scheme-handler/unknown" = [ "firefox.desktop" ];
+
       # Pastas
       "inode/directory" = [ "thunar.desktop" ];
 
@@ -133,12 +140,16 @@
       "text/plain" = [ "nvim-kitty.desktop" ];
       "text/markdown" = [ "nvim-kitty.desktop" ];
       "application/json" = [ "nvim-kitty.desktop" ];
-      "text/html" = [ "nvim-kitty.desktop" ];
       "text/x-c" = [ "nvim-kitty.desktop" ];
       "text/x-java" = [ "nvim-kitty.desktop" ];
       "text/x-python" = [ "nvim-kitty.desktop" ];
       "application/x-shellscript" = [ "nvim-kitty.desktop" ];
     };
+  };
+
+  # --- VARIÁVEIS DE SESSÃO GLOBAIS ---
+  home.sessionVariables = {
+    BROWSER = "firefox";
   };
 
   # --- ATALHOS CUSTOMIZADOS (Workarounds) ---
