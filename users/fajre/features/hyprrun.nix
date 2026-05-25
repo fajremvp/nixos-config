@@ -18,6 +18,7 @@
         "Pavucontrol:pavucontrol"
         "qBittorrent:qbittorrent"
         "ProtonVPN:protonvpn-app"
+	"SimpleX:simplex-chat-desktop"
         "Sparrow Wallet:sparrow-desktop"
         "Feather Wallet:feather"
         "VeraCrypt:veracrypt"
