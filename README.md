@@ -16,22 +16,29 @@ O NixOS eleva essa filosofia ao nível do sistema operacional. Com este reposit�
 
 ## 🏗️ Estrutura do Repositório
 
-A arquitetura foi desenhada para ser modular e escalar para múltiplas máquinas:
+A arquitetura foi desenhada para ser modular, separando responsabilidades do sistema operacional e configurações de usuário, escalando facilmente para múltiplas máquinas.
 
 ```bash
 .
-├── flake.nix               # O Coração: Define as entradas (Nixpkgs) e saídas (Hosts)
-├── flake.lock              # Pinagem de versões (Garante a reprodutibilidade exata)
-├── hosts/                  # Configurações de Sistema (Nível Root / OS)
-│   ├── acer-aspire/        # Meu laptop principal
-│   └── homelab-vm/         # Máquina virtual do meu Homelab
-├── users/                  # Configurações de Usuário (Home Manager)
-│   └── fajre/              # Meu usuário padrão
-│       ├── home.nix        # Pacotes do usuário, Bash, Git, GPG, etc.
-│       └── features/       # Módulos opt-in (Ex: Niri, Kitty)
+├── flake.nix               # O coração de tudo: Define as entradas (Nixpkgs) e saídas (Hosts e Home Manager)
+├── flake.lock              # Pinagem de versões: Garante reprodutibilidade travando as hashes das dependências
+├── hosts/                  # Configurações no nível do Sistema Operacional (Root / Systemd)
+│   ├── acer-aspire/        # Meu notebook principal
+│   │   ├── default.nix     # Configuração base, serviços, firewall, rede, boot e pacotes essenciais
+│   │   └── hardware.nix    # Gerado via nixos-generate-config (Mapeia LUKS, BTRFS e Kernel modules)
+│   └── homelab-vm/         # Host: Máquina virtual do meu Homelab.
+│       └── default.nix     # Configurações de sistema isoladas da VM.
+├── users/                  # Configurações no nível do Usuário (via Home Manager)
+│   └── fajre/              # Meu usuário principal
+│       ├── home.nix        # Pacotes do usuário, variáveis de ambiente, atalhos, dotfiles globais e MIME types
+│       └── features/       # Módulos opt-in gerenciados de forma declarativa
+│           └── *.nix       # Módulos específicos isolados (Niri, Kitty, Neovim, MPV, etc)
 ├── secrets/                # Gerenciamento de segredos via SOPS (WIP)
-├── .pre-commit-config.yaml # Hooks de validação de código e segurança
-├── .gitignore              # Proteção contra vazamento de chaves e variáveis
+│   ├── .sops.yaml          # Regras de criptografia e chaves PGP/Age
+│   └── secrets.yaml        # Arquivo criptografado com chaves e senhas da infra
+├── .pre-commit-config.yaml # Hooks locais (Gitleaks, Shellcheck, Yamllint) para higiene de código
+├── .gitignore              # Proteção extra contra vazamentos e lixo de sistema
+├── LICENSE                 # MIT License
 └── README.md               # Este arquivo
 ```
 
