@@ -26,8 +26,8 @@ A arquitetura foi desenhada para ser modular, separando responsabilidades do sis
 │   ├── acer-aspire/        # Meu notebook principal
 │   │   ├── default.nix     # Configuração base, serviços, firewall, rede, boot e pacotes essenciais
 │   │   └── hardware.nix    # Gerado via nixos-generate-config (Mapeia LUKS, BTRFS e Kernel modules)
-│   └── homelab-vm/         # Host: Máquina virtual do meu Homelab.
-│       └── default.nix     # Configurações de sistema isoladas da VM.
+│   └── homelab-vm/         # Host: Máquina virtual do meu Homelab
+│       └── default.nix     # Configurações de sistema isoladas da VM
 ├── users/                  # Configurações no nível do Usuário (via Home Manager)
 │   └── fajre/              # Meu usuário principal
 │       ├── home.nix        # Pacotes do usuário, variáveis de ambiente, atalhos, dotfiles globais e MIME types
