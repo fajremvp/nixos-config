@@ -139,6 +139,23 @@
     extraGroups = [ "networkmanager" "wheel" "docker" "video" ]; # wheel = sudo
   };
 
+  # --- HD DE BACKUP (1TB) ---
+  boot.initrd.secrets = {
+    "/etc/secrets/cryptbackup.key" = "/etc/secrets/cryptbackup.key";
+  };
+
+  boot.initrd.luks.devices."cryptbackup" = {
+    device = "/dev/disk/by-uuid/9d10064c-7b00-42e7-bda5-92688cf5793a";
+    keyFile = "/etc/secrets/cryptbackup.key";
+    bypassWorkqueues = true;
+  };
+
+  fileSystems."/mnt/backup-hd" = {
+    device = "/dev/disk/by-uuid/f2826443-524c-44a0-bdc7-415f538cb477";
+    fsType = "ext4";
+    options = [ "defaults" "noatime" "nofail" ];
+  };
+
   # Versão do Estado do Sistema
   system.stateVersion = "25.11";
 }
