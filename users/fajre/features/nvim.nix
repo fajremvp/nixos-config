@@ -18,6 +18,7 @@
       # Essenciais para o Treesitter compilar os parsers
       gcc
       gnumake
+      tree-sitter
 
       # Essenciais para o Clipboard funcionar no Wayland
       wl-clipboard
