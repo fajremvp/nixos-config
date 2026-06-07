@@ -14,6 +14,7 @@
       cursor_trail = "1";
       cursor_shape = "block";
       hide_window_decorations = "yes";
+      enable_audio_bell = "no";
     };
 
     extraConfig = ''
