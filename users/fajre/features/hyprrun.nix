@@ -21,6 +21,7 @@
 	"SimpleX:simplex-chat-desktop"
         "Sparrow Wallet:sparrow-desktop"
         "Feather Wallet:feather"
+	"Bisq:bisq2"
         "VeraCrypt:veracrypt"
         "draw.io:drawio"
         "Kdenlive:kdenlive"

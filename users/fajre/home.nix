@@ -25,7 +25,7 @@
     libreoffice hunspellDicts.pt-br
     prismlauncher
     drawio zathura qimgv
-    veracrypt sparrow feather
+    veracrypt sparrow feather bisq2
     simplex-chat-desktop
     proton-vpn qbittorrent
     awww
