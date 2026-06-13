@@ -10,6 +10,7 @@
         "Firefox:firefox"
         "Chromium:chromium"
         "Tor Browser:tor-browser"
+	"Obsidian:obsidian"
         "LibreOffice:libreoffice"
         "NetBeans:netbeans"
         "Prism Launcher:prismlauncher"

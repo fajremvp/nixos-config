@@ -21,6 +21,7 @@
   # O Nix vai baixar e colocar no $PATH automaticamente
   home.packages = with pkgs; [
     firefox chromium tor-browser
+    obsidian
     obs-studio kdePackages.kdenlive pavucontrol
     libreoffice hunspellDicts.pt-br
     prismlauncher
