@@ -11,6 +11,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    btc-clients.url = "github:emmanuelrosa/btc-clients-nix";
+
     # Adicionar o sops-nix aqui futuramente para os secrets
   };
 

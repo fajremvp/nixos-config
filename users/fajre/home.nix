@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   # Importa as "Features" (Módulos opt-in)
@@ -27,6 +27,7 @@
     prismlauncher
     drawio zathura qimgv
     veracrypt sparrow feather bisq2
+    inputs.btc-clients.packages.${pkgs.system}.bisq-desktop
     simplex-chat-desktop
     proton-vpn qbittorrent
     awww
