@@ -24,7 +24,7 @@
         "Feather Wallet:feather"
 	"Bisq 2:bisq2"
         "Bisq 1:bisq-desktop"
-	"eigenwallet:unstoppableswap-gui-rs"
+	"eigenwallet:GDK_BACKEND=x11 unstoppableswap-gui-rs"
         "VeraCrypt:veracrypt"
         "draw.io:drawio"
         "Kdenlive:kdenlive"
