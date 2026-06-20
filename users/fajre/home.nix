@@ -26,7 +26,7 @@
     libreoffice hunspellDicts.pt-br
     prismlauncher
     drawio zathura qimgv
-    veracrypt sparrow feather bisq2
+    veracrypt sparrow feather bisq2 eigenwallet
     inputs.btc-clients.packages.${pkgs.system}.bisq-desktop
     simplex-chat-desktop
     proton-vpn qbittorrent
