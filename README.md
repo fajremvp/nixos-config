@@ -216,4 +216,4 @@ Colar os UUIDs coletados via `sudo blkid /dev/sda1` (partição física) e `sudo
 
 ---
 
-**Nota:** Futuramente pretendo migrar para o [Disko](https://github.com/nix-community/disko), permitindo automatizar completamente o provisionamento do disco e a instalação do sistema com um único comando.
+**Nota sobre o Disko:** Embora a automação declarativa de discos com o [Disko](https://github.com/nix-community/disko) ser muito boa dentro do ecossistema NixOS para automatizar o particionamento de discos de forma declarativa, neste repositório eu preferi manter o processo imperativo documentado neste runbook. Ele faz mais sentido em cenários de provisionamento em massa, como várias máquinas iguais ou ambientes em nuvem. No caso de um único laptop, onde formatações são raras e o hardware pode mudar com o tempo, essa abstração acaba adicionando mais rigidez do que valor real. Por isso, o runbook já cumpre bem o papel de manter o processo reprodutível sem sacrificar flexibilidade.
