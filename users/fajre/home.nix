@@ -23,7 +23,7 @@
     firefox chromium tor-browser
     obsidian
     obs-studio kdePackages.kdenlive pavucontrol
-    libreoffice hunspellDicts.pt-br
+    libreoffice hunspellDicts.en_US hunspellDicts.pt-br
     prismlauncher
     drawio zathura qimgv
     veracrypt sparrow feather bisq2 eigenwallet
