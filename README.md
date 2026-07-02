@@ -1,6 +1,6 @@
 # ❄️ OS as Code | NixOS & Home Manager
 
-Bem-vindo ao repositório do meu desktop. Este repositório contém a configuração declarativa completa dos meus sistemas operacionais e ambientes de usuário, gerenciados inteiramente via **Nix Flakes** e **Home Manager**.
+Este repositório contém a configuração declarativa completa dos meus sistemas operacionais e ambientes de usuário, gerenciados inteiramente via **Nix Flakes** e **Home Manager**.
 
 ## 🧠 Filosofia: Por que NixOS?
 
@@ -23,11 +23,9 @@ A arquitetura foi desenhada para ser modular, separando responsabilidades do sis
 ├── flake.nix               # O coração de tudo: Define as entradas (Nixpkgs) e saídas (Hosts e Home Manager)
 ├── flake.lock              # Pinagem de versões: Garante reprodutibilidade travando as hashes das dependências
 ├── hosts/                  # Configurações no nível do Sistema Operacional (Root / Systemd)
-│   ├── acer-aspire/        # Meu notebook principal
-│   │   ├── default.nix     # Configuração base, serviços, firewall, rede, boot e pacotes essenciais
-│   │   └── hardware.nix    # Gerado via nixos-generate-config (Mapeia LUKS, BTRFS e Kernel modules)
-│   └── homelab-vm/         # Host: Máquina virtual do meu Homelab
-│       └── default.nix     # Configurações de sistema isoladas da VM
+│   └── acer-aspire/        # Meu notebook principal
+│       ├── default.nix     # Configuração base, serviços, firewall, rede, boot e pacotes essenciais
+│       └── hardware.nix    # Gerado via nixos-generate-config (Mapeia LUKS, BTRFS e Kernel modules)
 ├── users/                  # Configurações no nível do Usuário (via Home Manager)
 │   └── fajre/              # Meu usuário principal
 │       ├── home.nix        # Pacotes do usuário, variáveis de ambiente, atalhos, dotfiles globais e MIME types
@@ -41,6 +39,8 @@ A arquitetura foi desenhada para ser modular, separando responsabilidades do sis
 ├── LICENSE                 # MIT License
 └── README.md               # Este arquivo
 ```
+
+---
 
 ## 💿 Guia de Instalação Bare-Metal (Runbook)
 
