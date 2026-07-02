@@ -34,185 +34,20 @@ A arquitetura foi desenhada para ser modular, separando responsabilidades do sis
 ├── secrets/                # Gerenciamento de segredos via SOPS (WIP)
 │   ├── .sops.yaml          # Regras de criptografia e chaves PGP/Age
 │   └── secrets.yaml        # Arquivo criptografado com chaves e senhas da infra
+├── docs/                   # Documentação técnica e procedimentos operacionais
+│   └── runbooks/           # Guias passo-a-passo (Instalação, Discos, etc)
 ├── .pre-commit-config.yaml # Hooks locais (Gitleaks, Shellcheck, Yamllint) para higiene de código
 ├── .gitignore              # Proteção extra contra vazamentos e lixo de sistema
 ├── LICENSE                 # MIT License
 └── README.md               # Este arquivo
 ```
 
----
+## 📚 Documentação e Runbooks
 
-## 💿 Guia de Instalação Bare-Metal (Runbook)
+Os procedimentos operacionais padrão (SOPs) para instalação e manutenção do hardware físico estão documentados de forma imperativa e separada:
 
-Este guia documenta o processo exato de instalação deste repositório em uma máquina física do zero, utilizando **Criptografia LUKS** e **Subvolumes BTRFS** com compressão ZSTD.
-
-### Fase 0: Preparação
-1. Faça o download da **NixOS Minimal ISO** e grave em um pendrive:
-   ```bash
-   sudo dd if=nixos-minimal.iso of=/dev/sdc bs=4M status=progress
-   sync
-   ```
-2. Dê boot na máquina via pendrive e conecte-se à internet.
-
-### Fase 1: Particionamento (UEFI)
-Nota: Neste exemplo, o disco alvo é o /dev/sdb.
-1. Entra como root
-   ```bash
-   sudo su
-   ```
-2. Confirma conexão
-   ```bash
-   ping 1.1.1.1
-   ```
-3. Cria tabela GPT e partições (Boot e Root)
-   ```bash
-   parted /dev/sdb -- mklabel gpt
-   parted /dev/sdb -- mkpart ESP fat32 1MiB 512MiB
-   parted /dev/sdb -- set 1 esp on
-   parted /dev/sdb -- mkpart primary 512MiB 100%
-   ```
-### Fase 2: LUKS e BTRFS com subvolumes
-1. Formata e abre o volume criptografado LUKS
-   ```bash
-   cryptsetup luksFormat /dev/sdb2
-   cryptsetup open /dev/sdb2 cryptroot
-   ```
-2. Formata as partições
-   ```bash
-   mkfs.fat -F 32 -n boot /dev/sdb1
-   mkfs.btrfs -L nixos /dev/mapper/cryptroot
-   ```
-3. Criação dos Subvolumes BTRFS para flexibilidade e snapshots
-   ```bash
-   mount /dev/mapper/cryptroot /mnt
-   btrfs subvolume create /mnt/@
-   btrfs subvolume create /mnt/@home
-   btrfs subvolume create /mnt/@nix
-   umount /mnt
-   ```
-4. Montagem da estrutura final utilizando compressão ZSTD
-   ```bash
-   mount -o compress=zstd,subvol=@ /dev/mapper/cryptroot /mnt
-   mkdir -p /mnt/{home,nix,boot}
-   mount -o compress=zstd,subvol=@home /dev/mapper/cryptroot /mnt/home
-   mount -o compress=zstd,subvol=@nix /dev/mapper/cryptroot /mnt/nix
-   mount /dev/sdb1 /mnt/boot
-   ```
-### Fase 3: Geração de Hardware e Injeção no Flake
-1. Gera as configurações do hardware mapeando o LUKS e os subvolumes
-   ```bash
-   nixos-generate-config --root /mnt
-   ```
-2. Sai do usuário root para usar o Git com segurança
-   ```bash
-   exit
-   ```
-3. Clona a infraestrutura
-   ```bash
-   git clone https://github.com/fajremvp/nixos-config.git ~/nixos-config
-   cd ~/nixos-config
-   ```
-4. Injeta o hardware gerado no módulo correto
-   ```bash
-   cp /mnt/etc/nixos/hardware-configuration.nix ./hosts/acer-aspire/hardware.nix
-   ```
-5. Verifica dependências no default.nix e faz o commit
-Observação: Flakes exigem que os arquivos estejam versionados no Git.
-   ```bash
-   git add .
-   git commit -m "chore: inject bare-metal hardware config (LUKS+BTRFS)"
-   ```
-### Fase 4: Deploy
-Inicia a instalação apontando para o host desejado
-   ```bash
-   sudo nixos-install --flake .#acer-aspire
-   ```
-O instalador irá compilar o sistema, instalar os pacotes declarados e, ao final, solicitará a senha de root.
-Quando finalizar:
-1. Digite `reboot` e remova o pendrive.
-2. Insira a senha do disco LUKS durante o boot.
-3. Logue no TTY (usuário fajre, senha inicial 123).
-4. Execute `niri-session` para iniciar a interface gráfica.
-
-## 💾 Adicionando Disco Secundário de Backup (LUKS2 + Keyfile Auto-Unlock) (Runbook)
-
-Este runbook documenta o processo imperativo e declarativo para adicionar um HD mecânico secundário de 1TB (`/dev/sda`) dedicado a backups, utilizando criptografia forte (AES-XTS-512) e desbloqueio automático em cascata gerenciado pelo estágio inicial de boot do NixOS (initrd).
-
-### Fase 1: Particionamento e Configuração do LUKS2
-1. Entrar como root e configure a tabela de partição GPT ocupando 100% do disco:
-   ```bash
-   sudo parted /dev/sda -- mklabel gpt
-   sudo parted -a optimal /dev/sda -- mkpart primary 0% 100%
-   ```
-2. Formatar a partição com criptografia LUKS2 otimizada para setores de 4K:
-   ```bash
-   sudo cryptsetup luksFormat --type luks2 --sector-size 4096 -s 512 -c aes-xts-plain64 /dev/sda1
-   ```
-3. Abrir o cofre manualmente e formatar em Ext4 (o parâmetro -m 1 reserva apenas 1% para o root, liberando mais espaço útil em discos grandes):
-   ```bash
-   sudo cryptsetup open /dev/sda1 cryptbackup
-   sudo mkfs.ext4 -m 1 -L BACKUP-HD /dev/mapper/cryptbackup
-   ```
-### Fase 2: Geração de Chave (Keyfile) e Redundância
-
-Para evitar digitar a senha do SSD e do HD separadamente no boot, criar uma chave aleatória e embutimos o desbloqueio no initrd.
-
-1. Faça o backup do cabeçalho do LUKS (crítico contra corrupção física de blocos):
-    ```bash
-    sudo cryptsetup luksHeaderBackup /dev/sda1 --header-backup-file ~/Important/aceraspire-hd-luks-header-backup-sda1.img
-    ```
-2. Gerar uma chave binária aleatória de 4096 bits com permissões estritas de leitura:
-    ```bash
-    sudo mkdir -p /etc/secrets
-    sudo dd if=/dev/urandom of=/etc/secrets/cryptbackup.key bs=512 count=8
-    sudo chmod 400 /etc/secrets/cryptbackup.key
-    ```
-3. Adicionar essa chave criptográfica como um método válido de abertura no slot livre do HD:
-    ```bash
-    sudo cryptsetup luksAddKey /dev/sda1 /etc/secrets/cryptbackup.key
-    ```
-### Fase 3: Declaração no NixOS (`hosts/acer-aspire/default.nix`)
-
-Colar os UUIDs coletados via `sudo blkid /dev/sda1` (partição física) e `sudo blkid /dev/mapper/cryptbackup` (sistema de arquivos lógico) na raiz da configuração do host:
-
-    ```nix
-    # Injeta o arquivo de chave dentro da RAM de boot (initrd) antes do mount da raiz
-    boot.initrd.secrets = {
-       "/etc/secrets/cryptbackup.key" = "/etc/secrets/cryptbackup.key";
-    };
-
-    # Descriptografia do hardware via Keyfile
-    boot.initrd.luks.devices."cryptbackup" = {
-       device = "/dev/disk/by-uuid/COLOQUE_O_UUID_DO_LUKS_AQUI";
-       keyFile = "/etc/secrets/cryptbackup.key";
-       bypassWorkqueues = true; # Otimização de performance
-    };
-
-    # Montagem estável na árvore do sistema
-    fileSystems."/mnt/backup-hd" = {
-       device = "/dev/disk/by-uuid/COLOQUE_O_UUID_DO_EXT4_AQUI";
-       fsType = "ext4";
-       # 'nofail' impede o travamento do boot caso o HD secundário seja removido
-       options = [ "defaults" "noatime" "nofail" ];
-    };
-    ```
-
-### Fase 4: Deploy e Ajuste de Permissões de Usuário
-1. Aplique a configuração no sistema:
-    ```bash
-    git add hosts/acer-aspire/default.nix
-    sudo nixos-rebuild switch --flake .#acer-aspire
-    ```
-2. Fechar o mapeamento manual antigo e forçar o systemd a gerenciar o novo ponto de montagem:
-    ```bash
-    sudo cryptsetup close cryptbackup
-    sudo systemctl daemon-reload
-    sudo systemctl restart mnt-backup\\x2dhd.mount
-    ```
-3. Transferir a propriedade da pasta raiz do HD para o seu usuário do Home Manager:
-    ```bash
-    sudo chown -R fajre:users /mnt/backup-hd
-    ```
+* [Guia de Instalação Bare-Metal (LUKS + BTRFS)](./docs/runbooks/01-install-bare-metal.md)
+* [Adicionando Disco Secundário de Backup (LUKS2 + Keyfile)](./docs/runbooks/02-add-backup-disk.md)
 
 ---
 
