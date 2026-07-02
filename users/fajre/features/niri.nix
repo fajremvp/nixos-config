@@ -198,5 +198,11 @@ window-rule {
         blur true
     }
 }
+
+window-rule {
+    match app-id="^obsidian$"
+    open-maximized true
+}
+
 '';
 }
