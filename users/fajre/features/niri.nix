@@ -15,6 +15,7 @@ prefer-no-csd
 // O Niri recomenda que ferramentas essenciais como barras e daemons sejam iniciadas na sua sessão (Wayland).
 spawn-at-startup "hypridle"
 spawn-at-startup "xwayland-satellite"
+spawn-at-startup "waybar"
 
 // Execução de script bash customizado
 spawn-sh-at-startup "~/.local/bin/luz_noturna.sh reset"
