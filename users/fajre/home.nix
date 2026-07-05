@@ -33,6 +33,7 @@
     proton-vpn qbittorrent
     awww
     git pre-commit gitleaks nmap
+    sops age
     vim btop fastfetch tree fzf wl-clipboard
     _7zz unzip zip
     jdk21 maven netbeans xwayland-satellite
