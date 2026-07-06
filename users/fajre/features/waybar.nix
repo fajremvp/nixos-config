@@ -9,7 +9,7 @@
       "layer": "top",
       "position": "top",
       "height": 26,
-      "spacing": 5,
+      "spacing": 4,
       "output": "eDP-1",
 
       "modules-left": [
@@ -23,42 +23,48 @@
       "modules-right": [
         "pulseaudio",
         "custom/wlsunset",
+        "idle_inhibitor",
         "niri/language",
         "bluetooth",
         "custom/protonvpn",
         "custom/tailscale",
         "network",
-        "clock"
+        "clock",
+        "custom/power"
       ],
 
       // --- Módulos da Esquerda ---
       "battery": {
+        "tooltip": false,
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
         "states": {
           "warning": 30,
           "critical": 15
         },
-        "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
         "format-icons": ["", "", "", "", ""],
         "on-click": "kitty --override font_size=10 -e btop"
       },
       "cpu": {
-        "format": " {usage}%",
         "tooltip": false,
+        "format": " {usage}%",
         "on-click": "kitty --override font_size=10 -e btop"
       },
       "memory": {
+        "tooltip": false,
         "format": "󰍛 {}%",
         "on-click": "kitty --override font_size=10 -e btop"
       },
       "temperature": {
+        "tooltip": false,
         "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
         "critical-threshold": 75,
         "format": "{temperatureC}°C",
         "on-click": "kitty --override font_size=10 -e btop"
       },
       "custom/uptime": {
+        "tooltip": false,
         "format": "↑ {}",
         "exec": "awk '{d=int($1/86400); h=int(($1%86400)/3600); m=int(($1%3600)/60); if(d>0) printf \"%dd \", d; printf \"%dh%dm\\n\", h, m}' /proc/uptime",
         "interval": 60,
@@ -67,13 +73,16 @@
 
       // --- Módulos da Direita ---
       "pulseaudio": {
+        "tooltip": false,
         "format": "{icon}  {volume}%",
         "format-muted": "󰖁 Muted",
         "format-icons": {
           "default": ["", "", ""]
-        }
+        },
+	"on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
       },
       "custom/wlsunset": {
+        "tooltip": false,
         "format": "{}K",
         "exec": "cat ~/.cache/current_temp 2>/dev/null || echo '3000'",
         "interval": 2,
@@ -81,26 +90,38 @@
         "on-scroll-up": "~/.local/bin/luz_noturna.sh up",
         "on-scroll-down": "~/.local/bin/luz_noturna.sh down"
       },
+      "idle_inhibitor": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+          "activated": "",
+          "deactivated": ""
+        }
+      },
       "niri/language": {
+        "tooltip": false,
         "format": "{}",
         "format-en": "US",
         "format-pt": "BR"
       },
       "bluetooth": {
+        "tooltip": false,
         "format": " {status}",
         "format-connected": " {device_alias}",
         "on-click": "blueman-manager"
       },
       "custom/protonvpn": {
-  	"format": "{}",
-	"exec": "ip link show proton0 >/dev/null 2>&1 && echo VPN ON || echo VPN OFF",
-	"interval": 5,
-	"on-click": "protonvpn-app"
+        "tooltip": false,
+        "format": "{}",
+        "exec": "ip link show proton0 >/dev/null 2>&1 && echo VPN ON || echo VPN OFF",
+        "interval": 5,
+        "on-click": "protonvpn-app"
       },
       "custom/tailscale": {
+        "tooltip": false,
         "format": "{}",
         "exec": "tailscale status >/dev/null 2>&1 && echo 'Tailscale ON' || echo 'Tailscale OFF'",
-	"interval": 5
+        "interval": 5
       },
       "network": {
         "format-wifi": " {essid}",
@@ -111,7 +132,17 @@
       },
       "clock": {
         "format": "{:%a, %b %d %H:%M}",
+        "calendar": {
+          "format": {
+            "today": "<span background='#cdd6f4' foreground='#313244'><b>{}</b></span>"
+          }
+        },
         "tooltip-format": "<tt><small>{calendar}</small></tt>"
+      },
+      "custom/power": {
+        "tooltip": false,
+        "format": "poweroff",
+        "on-double-click": "poweroff"
       }
     }
   '';
@@ -130,7 +161,7 @@
     }
 
     /* Módulos ordenados da Esquerda para a Direita */
-    #battery, #cpu, #memory, #temperature, #custom-uptime, #pulseaudio, #custom-wlsunset, #language, #bluetooth, #custom-protonvpn, #custom-tailscale, #network, #clock {
+    #battery, #cpu, #memory, #temperature, #custom-uptime, #pulseaudio, #custom-wlsunset, #idle_inhibitor, #language, #bluetooth, #custom-protonvpn, #custom-tailscale, #network, #clock, #custom-power {
       padding: 0 10px;
       margin: 4px 4px;
       border-radius: 8px;
