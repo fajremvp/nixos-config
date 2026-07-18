@@ -137,7 +137,8 @@
             "today": "<span background='#cdd6f4' foreground='#313244'><b>{}</b></span>"
           }
         },
-        "tooltip-format": "<tt><small>{calendar}</small></tt>"
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+	"on-click": "kitty --hold -e cal -y"
       },
       "custom/power": {
         "tooltip": false,
