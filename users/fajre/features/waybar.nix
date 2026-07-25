@@ -138,7 +138,7 @@
           }
         },
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
-	"on-click": "kitty --hold -e cal -y"
+        "on-click": "kitty --hold -e cal -y"
       },
       "custom/power": {
         "tooltip": false,
