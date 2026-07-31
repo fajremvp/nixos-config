@@ -36,7 +36,7 @@
     sops age
     vim btop fastfetch tree fzf wl-clipboard
     _7zz unzip zip
-    jdk21 maven jetbrains.idea-oss xwayland-satellite
+    jdk25 maven jetbrains.idea-oss xwayland-satellite
     nodejs
   ];
 
