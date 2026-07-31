@@ -16,6 +16,8 @@ prefer-no-csd
 spawn-at-startup "hypridle"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "waybar"
+spawn-at-startup "firefox"
+spawn-at-startup "obsidian"
 
 // Execução de script bash customizado
 spawn-sh-at-startup "~/.local/bin/luz_noturna.sh reset"
