@@ -36,7 +36,9 @@
     sops age
     vim btop fastfetch tree fzf wl-clipboard
     _7zz unzip zip
-    jdk25 maven jetbrains.idea-oss xwayland-satellite
+    jdk25
+    (maven.override { jdk_headless = jdk25; })
+    jetbrains.idea-oss xwayland-satellite
     nodejs
   ];
 
@@ -154,6 +156,7 @@
   # --- VARIÁVEIS DE SESSÃO GLOBAIS ---
   home.sessionVariables = {
     BROWSER = "firefox";
+    JAVA_HOME = "${pkgs.jdk25}/lib/openjdk";
   };
 
   # --- ATALHOS CUSTOMIZADOS (Workarounds) ---
