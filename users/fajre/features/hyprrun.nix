@@ -12,7 +12,7 @@
         "Tor Browser:tor-browser"
         "Obsidian:obsidian"
         "LibreOffice:libreoffice"
-        "IntelliJ:idea-oss"
+        "IntelliJ:idea"
         "Prism Launcher:prismlauncher"
         "OBS:obs"
         "Blueman:blueman-manager"

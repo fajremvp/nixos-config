@@ -38,7 +38,7 @@
     _7zz unzip zip
     jdk25
     (maven.override { jdk_headless = jdk25; })
-    jetbrains.idea-oss xwayland-satellite
+    jetbrains.idea xwayland-satellite
     nodejs
   ];
 
