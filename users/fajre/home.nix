@@ -18,6 +18,22 @@
   home.username = "fajre";
   home.homeDirectory = "/home/fajre";
 
+  # --- XDG User Directories ---
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+
+    download = "${config.home.homeDirectory}/Downloads";
+    documents = "${config.home.homeDirectory}/Documents";
+    pictures = "${config.home.homeDirectory}/Pictures";
+    videos = "${config.home.homeDirectory}/Videos";
+
+    desktop = null;
+    music = null;
+    publicShare = null;
+    templates = null;
+  };
+
   # LISTA DE COMPRAS DE PACOTES
   # O Nix vai baixar e colocar no $PATH automaticamente
   home.packages = with pkgs; [
