@@ -121,7 +121,7 @@
   services.gpg-agent = {
     enable = true;
     defaultCacheTtl = 7200;
-    pinentry.package = pkgs.pinentry-gnome3;
+    pinentry.package = pkgs.pinentry-tty;
   };
 
   # --- Configuração do Cursor ---

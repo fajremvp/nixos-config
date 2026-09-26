@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./hardware.nix # <- Gerado automaticamente na instalação do NixOS.
+    ./hardware.nix # Gerado automaticamente na instalação do NixOS.
   ];
 
   # BOOTLOADER (UEFI)
@@ -104,6 +104,10 @@
 
   # Serviços de Segurança do GNOME (Necessário para o Proton VPN salvar senhas)
   services.gnome.gnome-keyring.enable = true;
+
+  # SSH agent tradicional - prompts de passphrase no terminal
+  services.gnome.gcr-ssh-agent.enable = false;
+  programs.ssh.startAgent = true;
 
   services.openssh = {
     enable = true;
