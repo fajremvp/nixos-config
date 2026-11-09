@@ -106,7 +106,7 @@
   programs.git = {
     enable = true;
     signing = {
-      key = "AF15F5ED0960E69E";
+      key = "D7DDDCA3EC8DD208920C27317E04E5F921769168!";
       signByDefault = true;
     };
     settings = {
