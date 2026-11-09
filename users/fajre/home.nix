@@ -111,7 +111,7 @@
     };
     settings = {
       user.name = "Fajre";
-      user.email = "105254444+fajremvp@users.noreply.github.com";
+      user.email = "me@joaofogaca.com";
       init.defaultBranch = "main";
     };
   };
